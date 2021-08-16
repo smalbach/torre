@@ -1,0 +1,16 @@
+.react-responsive-modal-modal {
+  background: #28293d;
+  background-color: #28293d;
+  max-width: 500px;
+  width: 100%;
+  color: #f5d476;
+}
+
+.react-responsive-modal-modal h2,
+.react-responsive-modal-modal p {
+  color: #f5d476;
+}
+
+.react-responsive-modal-closeButton {
+  background-color: #f5d476;
+}

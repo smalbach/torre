@@ -1,0 +1,50 @@
+$rbt-background-color-disabled: #e9ecef !default;
+
+$rbt-border-color-focus: #80bdff !default;
+$rbt-border-color-focus-invalid: #dc3545 !default;
+$rbt-border-color-focus-valid: #28a745 !default;
+
+$rbt-box-shadow-dimensions: 0 0 0 0.2rem;
+$rbt-box-shadow-color: rgba(0, 123, 255, 0.25) !default;
+$rbt-box-shadow-color-invalid: rgba(220, 53, 69, 0.25) !default;
+$rbt-box-shadow-color-valid: rgba(40, 167, 69, 0.25) !default;
+
+$rbt-color-focus: #495057 !default;
+$rbt-placeholder-color: #6c757d !default;
+
+.rbt-input-main,
+.rbt-input {
+  color: $torre-orange;
+  &.focus {
+    border-color: $rbt-border-color-focus;
+    box-shadow: $rbt-box-shadow-dimensions $rbt-box-shadow-color;
+    color: $torre-orange;
+    outline: 0;
+  }
+}
+
+.rbt-menu,
+.dropdown-menu {
+  background-color: $torre-card;
+  box-shadow: $box-shadow;
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+.rbt-menu::-webkit-scrollbar,
+.dropdown-menu::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
+.rbt-input-hint {
+  color: red;
+}
+
+.menu-options {
+  width: 300px;
+}
+
+.select-control,
+.select-control option {
+  background-color: $torre-card;
+  color: $torre-orange;
+}

@@ -1,17 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+
+import "assets/css/nucleo-icons.css";
+import "assets/scss/blk-design-system-react.scss?v=1.2.0";
+import "assets/demo/demo.css";
+
+import Jobs from "views/Jobs";
+import FilterState from "context/filters/filterState";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+  <FilterState>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/Jobs" render={(props) => <Jobs {...props} />} />
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+        <Redirect from="/" to="/jobs" />
+      </Switch>
+    </BrowserRouter>
+  </FilterState>,
+  document.getElementById("root")
+);
