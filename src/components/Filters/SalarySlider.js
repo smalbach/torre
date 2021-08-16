@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from "react";
 import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
 import RangeSlider from "react-bootstrap-range-slider";
-import { Input, Form, Row, Col, FormGroup, Label } from "reactstrap";
+import { Form, Row, Col, FormGroup } from "reactstrap";
 import NumberFormat from "react-number-format";
 import filterContext from "context/filters/filterContext";
 
@@ -45,6 +47,7 @@ const SalarySlider = ({ max, currency }) => {
                   const { formattedValue, value } = values;
                   // formattedValue = $2,223
                   // value ie, 2223
+
                   setValue(value);
                   //this.setState({ profit: formattedValue });
                 }}

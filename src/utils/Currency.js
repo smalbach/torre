@@ -2,6 +2,7 @@ import React from "react";
 import { Input } from "reactstrap";
 import currencys from "utils/data/currency";
 import axios from "axios";
+
 const Currency = ({ setCurrency, setShowslider, setShowsperidiocity }) => {
   const SEARCH_URI = "https://free.currconv.com/api/v7/convert";
   const handleChange = async (e) => {

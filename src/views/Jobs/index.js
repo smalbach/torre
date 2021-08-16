@@ -7,9 +7,6 @@ import Footer from "components/Footer/Footer.js";
 import Filters from "views/IndexSections/Filters.js";
 import Oportunities from "views/IndexSections/Oportunities.js";
 
-// reactstrap components
-import { Container, Row, Col } from "reactstrap";
-
 export default function Jobs() {
   React.useEffect(() => {
     document.body.classList.toggle("index-page");

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from "react";
 import filterContext from "context/filters/filterContext";
 import "react-responsive-modal/styles.css";
@@ -49,6 +50,7 @@ const SalarySelect = () => {
                   setCurrency={setCurrency}
                   setShowslider={setShowslider}
                   setShowsperidiocity={setShowsperidiocity}
+                  showsperidiocity={showsperidiocity}
                 />
               </FormGroup>
             </Col>

@@ -1,14 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import React, { useState, useReducer, useEffect } from "react";
 import filterContext from "./filterContext";
 import filterReducer from "./filterReducer";
 import axios from "axios";
 
 import {
-  FILTER_KEYWORD,
   FILTER_SETJOBS,
   FILTER_SETSELECTEDJOB,
   FILTER_LOADINGJOBS,
-  FILTER_LOADINGJOBSID,
 } from "types";
 
 const FilterState = (props) => {
@@ -35,6 +35,13 @@ const FilterState = (props) => {
   const [peridiocity, setPeridiocity] = useState("hourly");
   const [currentcyfind, setCurrencyfind] = useState([]);
 
+  const testingTD = () => {
+    console.log(company);
+    console.log(language);
+    console.log(location);
+    console.log(jobtype);
+    console.log(setKeyword);
+  };
   useEffect(() => {
     searchJobs();
   }, [search]);
@@ -117,6 +124,10 @@ const FilterState = (props) => {
         loadingjobs: state.loadingjobs,
         lodingjosid: state.lodingjosid,
         peridiocity: state.peridiocity,
+        company: state.company,
+        language: state.language,
+        location: state.location,
+        jobtype: state.jobtype,
 
         setCompany,
         setLanguage,

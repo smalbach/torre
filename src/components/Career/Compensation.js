@@ -1,7 +1,7 @@
 import React from "react";
 
 const Compensation = ({ compensation }) => {
-  const { currency, maxAmount, minAmount, periodicity } = compensation.data;
+  const { currency, maxAmount, minAmount } = compensation.data;
   return (
     <>
       {currency} -{minAmount}- {maxAmount}

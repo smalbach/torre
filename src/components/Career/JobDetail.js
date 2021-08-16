@@ -1,13 +1,11 @@
 import React from "react";
 import Compensation from "components/Career/Compensation";
 import JobType from "components/Career/JobType";
-import filterContext from "context/filters/filterContext";
+
 import { GoLocation } from "react-icons/go";
 import { BiMoney, BiTimeFive, BiCodeAlt } from "react-icons/bi";
-import { AiOutlineEye, AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
-import { Button } from "reactstrap";
+
 import { IoMdHourglass } from "react-icons/io";
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 const JobDetail = ({ job }) => {
   const {

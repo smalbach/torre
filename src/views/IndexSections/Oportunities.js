@@ -1,7 +1,6 @@
 import React from "react";
 import List from "components/Career/List";
 import JobDescription from "components/Career/JobDescription";
-import classnames from "classnames";
 
 // reactstrap components
 import {

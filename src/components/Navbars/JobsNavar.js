@@ -16,9 +16,6 @@ import {
   Container,
   Row,
   Col,
-  Input,
-  Form,
-  FormGroup,
 } from "reactstrap";
 
 export default function JobsNavar() {

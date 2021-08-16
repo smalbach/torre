@@ -1,26 +1,17 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext } from "react";
 import ListDetail from "components/Career/ListDetail";
-import { GoLocation } from "react-icons/go";
-import { BiMoney, BiTimeFive, BiCodeAlt } from "react-icons/bi";
-import { AiOutlineEye, AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
-import { Button } from "reactstrap";
-import { IoMdHourglass } from "react-icons/io";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import filterContext from "context/filters/filterContext";
-import { Spinner } from "react-bootstrap";
 
 const List = () => {
   const filtersContext = useContext(filterContext);
   const { jobs_list, open_position, loadingjobs } = filtersContext;
-  const handleClick = () => {};
 
   return (
     <>
       {loadingjobs ? (
-        <div>
-          Loading
-          <Spinner animation="border" />
-        </div>
+        <div>Loading</div>
       ) : (
         <div className="row">
           <div className="col-lg-12 mx-auto">
@@ -39,12 +30,7 @@ const List = () => {
             <nav aria-label="Page navigation">
               <ul className="pagination pagination-reset justify-content-center">
                 <li className="page-item disabled">
-                  <a
-                    className="page-link"
-                    href="#"
-                    tabIndex="-1"
-                    aria-disabled="true"
-                  >
+                  <a className="page-link">
                     <GrFormPrevious />
                   </a>
                 </li>
