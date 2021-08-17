@@ -18,7 +18,11 @@ export default function Oportunities() {
     <div>
       <Container>
         <Row>
-          <Col className="ml-auto mr-auto" md="10" xl="6">
+          <Col
+            className="ml-auto mr-auto overflow-auto oportunities-box"
+            md="10"
+            xl="6"
+          >
             <Card>
               <CardHeader>
                 <i className="tim-icons icon-spaceship" /> Available positions
