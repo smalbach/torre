@@ -94,13 +94,28 @@ const FilterState = (props) => {
           },
         });
       }
+
+      if (language.length !== 0) {
+        datacompose.push({
+          language: {
+            term: language.name,
+            fluency: "conversational",
+          },
+        });
+      }
+
+      if (location.length !== 0) {
+        datacompose.push({
+          location: {
+            term: location.name,
+          },
+        });
+      }
+
       const data = { and: datacompose };
 
-      console.log("3");
       const SEARCH_URI = `https://search.torre.co/opportunities/_search?currency=${currencysearch}&periodicity=${peridiocity}&lang=en&size=20&aggregate=true`;
 
-      console.log(SEARCH_URI);
-      console.log("4");
       try {
         setSearch(false);
 
