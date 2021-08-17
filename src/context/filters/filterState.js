@@ -35,7 +35,7 @@ const FilterState = (props) => {
   const [language, setLanguage] = useState([]);
   const [location, setLocation] = useState([]);
 
-  const [jobtype, setJobtype] = useState([]);
+  const [jobtype, setJobtype] = useState("");
   const [search, setSearch] = useState(false);
   const [peridiocity, setPeridiocity] = useState("hourly");
   const [currentcyfind, setCurrencyfind] = useState([]);
