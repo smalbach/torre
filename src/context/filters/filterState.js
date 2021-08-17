@@ -11,6 +11,7 @@ import {
   FILTER_SETSELECTEDJOB,
   FILTER_LOADINGJOBS,
   FILTER_COMPANY,
+  FILTER_SALARY,
 } from "types";
 
 const FilterState = (props) => {
@@ -25,13 +26,15 @@ const FilterState = (props) => {
     lodingjosid: null,
     keyword: "",
     company: "",
+    salary: "",
+    salaryText: "",
   };
 
   const [state, dispatch] = useReducer(filterReducer, initialState);
 
   const [language, setLanguage] = useState([]);
   const [location, setLocation] = useState([]);
-  const [salary, setSalary] = useState([]);
+
   const [jobtype, setJobtype] = useState([]);
   const [search, setSearch] = useState(false);
   const [peridiocity, setPeridiocity] = useState("hourly");
@@ -44,8 +47,20 @@ const FilterState = (props) => {
     console.log(setKeyword);
   };
 
+  const setSalary = (salary) => {
+    const dataPayload = {
+      salary: salary,
+      peridiocity,
+      currentcyfind,
+    };
+
+    dispatch({
+      type: FILTER_SALARY,
+      payload: dataPayload,
+    });
+  };
+
   const setKeyword = (word) => {
-    console.log(word);
     dispatch({
       type: FILTER_KEYWORD,
       payload: word,
@@ -53,7 +68,6 @@ const FilterState = (props) => {
   };
 
   const setCompany = (word) => {
-    console.log(word);
     dispatch({
       type: FILTER_COMPANY,
       payload: word,
@@ -70,13 +84,6 @@ const FilterState = (props) => {
         type: FILTER_LOADINGJOBS,
         payload: true,
       });
-
-      let currencysearch = "";
-      if (salary.length === 0) {
-        currencysearch = "USD%24";
-      } else {
-        currencysearch = `${currentcyfind.value}%24`;
-      }
 
       let datacompose = [{ status: { code: "open" } }];
       if (state.keyword !== "") {
@@ -108,6 +115,21 @@ const FilterState = (props) => {
         datacompose.push({
           location: {
             term: location.name,
+          },
+        });
+      }
+
+      let currencysearch = "";
+      if (state.salary.length === 0) {
+        currencysearch = "USD%24";
+      } else {
+        currencysearch = `${currentcyfind.value}%24`;
+        datacompose.push({
+          compensation: {
+            amount: state.salary,
+            currency: `${currentcyfind.value}$`,
+            periodicity: peridiocity,
+            scope: "with-compensation-only",
           },
         });
       }
@@ -161,6 +183,8 @@ const FilterState = (props) => {
         language: state.language,
         location: state.location,
         jobtype: state.jobtype,
+        salary: state.salary,
+        salaryText: state.salaryText,
 
         setCompany,
         setLanguage,

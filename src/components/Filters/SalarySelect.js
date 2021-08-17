@@ -13,7 +13,8 @@ import "./css/modal.css";
 
 const SalarySelect = () => {
   const filtersContext = useContext(filterContext);
-  const { setSalary, setPeridiocity, setCurrencyfind } = filtersContext;
+  const { setSalary, setPeridiocity, setCurrencyfind, salaryText } =
+    filtersContext;
 
   const [open, setOpen] = useState(false);
 
@@ -32,7 +33,14 @@ const SalarySelect = () => {
 
   return (
     <>
-      <Input placeholder="Salary" type="text" onClick={onOpenModal} />
+      <Input
+        placeholder="Salary"
+        type="text"
+        onClick={onOpenModal}
+        value={salaryText}
+        className="form-control readonly"
+        readOnly
+      />
       <Input
         placeholder="Salary"
         name="type"

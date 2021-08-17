@@ -9,13 +9,11 @@ const Periodicity = ({
   setPeridiocity,
 }) => {
   const salaryUDS = 200000;
-  console.log(currency);
 
   const handleChange = (e) => {
     setShowslider(false);
     const { conversion } = currency;
 
-    //TODO: curency of eca country
     let value = 0;
     switch (e.target.value) {
       case "hourly":

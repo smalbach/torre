@@ -21,7 +21,7 @@ const List = () => {
                   Total Job Openings : {open_position}
                 </p>
 
-                {jobs_list.map((job) => (
+                {jobs_list.map((job, index) => (
                   <ListDetail key={job.id} job={job} />
                 ))}
               </div>

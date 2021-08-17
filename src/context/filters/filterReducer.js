@@ -5,6 +5,7 @@ import {
   FILTER_LOADINGJOBS,
   FILTER_LOADINGJOBSID,
   FILTER_COMPANY,
+  FILTER_SALARY,
 } from "types";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -15,6 +16,13 @@ export default (state, action) => {
         ...state,
         loadingjobs: action.payload,
       };
+    case FILTER_SALARY:
+      return {
+        ...state,
+        salary: action.payload.salary,
+        salaryText: `${action.payload.currentcyfind.value} ${action.payload.salary} ${action.payload.peridiocity} `,
+      };
+
     case FILTER_LOADINGJOBSID:
       return {
         ...state,
