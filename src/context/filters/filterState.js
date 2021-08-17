@@ -40,13 +40,6 @@ const FilterState = (props) => {
   const [peridiocity, setPeridiocity] = useState("hourly");
   const [currentcyfind, setCurrencyfind] = useState([]);
 
-  const testingTD = () => {
-    console.log(language);
-    console.log(location);
-    console.log(jobtype);
-    console.log(setKeyword);
-  };
-
   const setSalary = (salary) => {
     const dataPayload = {
       salary: salary,
@@ -86,6 +79,7 @@ const FilterState = (props) => {
       });
 
       let datacompose = [{ status: { code: "open" } }];
+
       if (state.keyword !== "") {
         datacompose.push({
           "skill/role": {
@@ -130,6 +124,14 @@ const FilterState = (props) => {
             currency: `${currentcyfind.value}$`,
             periodicity: peridiocity,
             scope: "with-compensation-only",
+          },
+        });
+      }
+
+      if (jobtype !== "") {
+        datacompose.push({
+          type: {
+            code: jobtype,
           },
         });
       }
