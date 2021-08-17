@@ -15,7 +15,16 @@ import {
 export default function Filters() {
   const filtersContext = useContext(filterContext);
   const { setKeyword, setCompany, setSearch } = filtersContext;
-  const handleClick = () => {
+
+  const handleChangeKeyWord = (e) => {
+    setKeyword(e.target.value);
+  };
+
+  const handleChangeCompany = (e) => {
+    setCompany(e.target.value);
+  };
+
+  const handleClick = (e) => {
     setSearch(true);
   };
   return (
@@ -33,7 +42,7 @@ export default function Filters() {
                   name="keyword"
                   id="keyword"
                   placeholder="Ex: Developer. Reacj js"
-                  onChange={setKeyword}
+                  onChange={handleChangeKeyWord}
                 />
               </FormGroup>
             </div>
@@ -47,7 +56,7 @@ export default function Filters() {
                   name="where"
                   id="where"
                   placeholder="Ex: torre"
-                  onChange={setCompany}
+                  onChange={handleChangeCompany}
                 />
               </FormGroup>
             </div>

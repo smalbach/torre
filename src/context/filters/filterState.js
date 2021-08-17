@@ -6,9 +6,11 @@ import filterReducer from "./filterReducer";
 import axios from "axios";
 
 import {
+  FILTER_KEYWORD,
   FILTER_SETJOBS,
   FILTER_SETSELECTEDJOB,
   FILTER_LOADINGJOBS,
+  FILTER_COMPANY,
 } from "types";
 
 const FilterState = (props) => {
@@ -21,12 +23,12 @@ const FilterState = (props) => {
     current_job: null,
     loadingjobs: null,
     lodingjosid: null,
+    keyword: "",
+    company: "",
   };
 
   const [state, dispatch] = useReducer(filterReducer, initialState);
 
-  const [keyword, setKeyword] = useState("");
-  const [company, setCompany] = useState("");
   const [language, setLanguage] = useState([]);
   const [location, setLocation] = useState([]);
   const [salary, setSalary] = useState([]);
@@ -36,12 +38,28 @@ const FilterState = (props) => {
   const [currentcyfind, setCurrencyfind] = useState([]);
 
   const testingTD = () => {
-    console.log(company);
     console.log(language);
     console.log(location);
     console.log(jobtype);
     console.log(setKeyword);
   };
+
+  const setKeyword = (word) => {
+    console.log(word);
+    dispatch({
+      type: FILTER_KEYWORD,
+      payload: word,
+    });
+  };
+
+  const setCompany = (word) => {
+    console.log(word);
+    dispatch({
+      type: FILTER_COMPANY,
+      payload: word,
+    });
+  };
+
   useEffect(() => {
     searchJobs();
   }, [search]);
@@ -52,32 +70,32 @@ const FilterState = (props) => {
         type: FILTER_LOADINGJOBS,
         payload: true,
       });
-      console.log("1");
+
       let currencysearch = "";
       if (salary.length === 0) {
         currencysearch = "USD%24";
       } else {
         currencysearch = `${currentcyfind.value}%24`;
       }
-      console.log({ keyword });
-      console.log("2");
 
-      let data = { status: { code: "open" } };
-      if (keyword !== "") {
-        console.log("Keywor");
-        console.log(data);
-        data = {
-          and: [
-            {
-              "skill/role": {
-                text: keyword,
-                experience: "potential-to-develop",
-              },
-            },
-            { status: { code: "open" } },
-          ],
-        };
+      let datacompose = [{ status: { code: "open" } }];
+      if (state.keyword !== "") {
+        datacompose.push({
+          "skill/role": {
+            text: state.keyword,
+            experience: "potential-to-develop",
+          },
+        });
       }
+      if (state.company !== "") {
+        datacompose.push({
+          organization: {
+            term: state.company,
+          },
+        });
+      }
+      const data = { and: datacompose };
+
       console.log("3");
       const SEARCH_URI = `https://search.torre.co/opportunities/_search?currency=${currencysearch}&periodicity=${peridiocity}&lang=en&size=20&aggregate=true`;
 
@@ -137,7 +155,7 @@ const FilterState = (props) => {
         setSearch,
         setPosition,
         setPeridiocity,
-
+        setKeyword,
         setCurrencyfind,
       }}
     >

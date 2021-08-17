@@ -4,6 +4,7 @@ import {
   FILTER_SETSELECTEDJOB,
   FILTER_LOADINGJOBS,
   FILTER_LOADINGJOBSID,
+  FILTER_COMPANY,
 } from "types";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -22,7 +23,12 @@ export default (state, action) => {
     case FILTER_KEYWORD:
       return {
         ...state,
-        loadingjobs: null,
+        keyword: action.payload,
+      };
+    case FILTER_COMPANY:
+      return {
+        ...state,
+        company: action.payload,
       };
     case FILTER_SETJOBS:
       return {
