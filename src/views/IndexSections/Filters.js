@@ -35,13 +35,13 @@ export default function Filters() {
             <div className="mb-3">
               <FormGroup>
                 <Label for="keywordfor" className="torre-dark">
-                  What: Job title, Position, Skills{" "}
+                  What job you want? Job title, Position, Skills{" "}
                 </Label>
                 <Input
                   type="text"
                   name="keyword"
                   id="keyword"
-                  placeholder="Ex: Developer. Reacj js"
+                  placeholder="e.g.: Developer. Reacj js"
                   onChange={handleChangeKeyWord}
                 />
               </FormGroup>
@@ -55,7 +55,7 @@ export default function Filters() {
                   type="text"
                   name="where"
                   id="where"
-                  placeholder="Ex: torre"
+                  placeholder="e.g.: torre"
                   onChange={handleChangeCompany}
                 />
               </FormGroup>

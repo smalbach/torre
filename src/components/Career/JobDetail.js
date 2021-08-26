@@ -1,7 +1,7 @@
 import React from "react";
 import Compensation from "components/Career/Compensation";
 import JobType from "components/Career/JobType";
-
+import OrganizationLogo from "components/Career/OrganizationLogo";
 import { GoLocation } from "react-icons/go";
 import { BiMoney, BiTimeFive, BiCodeAlt } from "react-icons/bi";
 
@@ -24,7 +24,7 @@ const JobDetail = ({ job }) => {
       <div className="job-box d-md-flex align-items-center justify-content-between mb-30">
         <div className="job-left my-4 d-md-flex align-items-center flex-wrap">
           <div className="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
-            <img src={organizations[0].picture} alt={organizations[0].name} />
+            <OrganizationLogo organizations={organizations} />
           </div>
           <div className="job-content">
             <h5 className="text-center text-md-left job-title">{objective}</h5>

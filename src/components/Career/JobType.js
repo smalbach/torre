@@ -7,10 +7,19 @@ const JobType = ({ type }) => {
     case "full-time-employment":
       jobtype = "Full time";
       break;
+    case "full-time":
+      jobtype = "Full time";
+      break;
+    case "part-time":
+      jobtype = "Part time";
+      break;
     case "part-time-employment":
       jobtype = "Part time";
       break;
     case "freelance-gigs":
+      jobtype = "Freelance";
+      break;
+    case "freelance":
       jobtype = "Freelance";
       break;
     case "internships":
@@ -24,7 +33,7 @@ const JobType = ({ type }) => {
       break;
   }
 
-  return <>{jobtype}</>;
+  return <div className="job-description-items">{jobtype}</div>;
 };
 
 export default JobType;

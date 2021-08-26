@@ -6,6 +6,7 @@ import {
   FILTER_LOADINGJOBSID,
   FILTER_COMPANY,
   FILTER_SALARY,
+  FILTER_UNSETJOB,
 } from "types";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -45,14 +46,24 @@ export default (state, action) => {
         open_position: action.payload.size,
         pagination: action.payload.pagination,
         loadingjobs: null,
+        loadingcurrentjob: true,
       };
 
     case FILTER_SETSELECTEDJOB:
       return {
         ...state,
-        current_job: state.jobs_list.filter((job) => job.id === action.payload),
+        current_job: action.payload,
         job_descrption: true,
         loadingjobs: null,
+        loadingcurrentjob: null,
+        loadingjobsid: null,
+      };
+
+    case FILTER_UNSETJOB:
+      return {
+        ...state,
+        current_job: null,
+        loadingcurrentjob: true,
       };
 
     default:

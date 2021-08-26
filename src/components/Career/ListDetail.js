@@ -1,17 +1,20 @@
-import React, { useContext } from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useContext, useRef } from "react";
 import Compensation from "components/Career/Compensation";
+import OrganizationLogo from "components/Career/OrganizationLogo";
+import Locations from "components/Career/Locations";
 import JobType from "components/Career/JobType";
 import { GoLocation } from "react-icons/go";
-import { BiMoney, BiTimeFive, BiCodeAlt } from "react-icons/bi";
-import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
-import { Button } from "reactstrap";
+import { BiMoney, BiTimeFive } from "react-icons/bi";
+
 import { IoMdHourglass } from "react-icons/io";
 import filterContext from "context/filters/filterContext";
+import { Link } from "react-router-dom";
 
-const ListDetail = ({ key, job }) => {
+const ListDetail = ({ job }) => {
   const filtersContext = useContext(filterContext);
   const { setPosition } = filtersContext;
-
+  const currentJobRef = useRef();
   const {
     remote,
     locations,
@@ -22,65 +25,75 @@ const ListDetail = ({ key, job }) => {
     organizations,
     objective,
   } = job;
-  const compensation_visible = compensation.visible;
 
-  const handleClickPrev = () => {};
-  const handleClickNext = () => {};
   const handleClickSetJob = () => {
     setPosition(job.id);
   };
 
   return (
-    <div
-      className="job-box d-md-flex align-items-center justify-content-between mb-30"
-      onClick={handleClickSetJob}
-    >
-      <div className="job-left my-4 d-md-flex align-items-center flex-wrap">
-        <div className="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
-          <img src={organizations[0].picture} alt={organizations[0].name} />
-        </div>
-        <div className="job-content">
-          <h5 className="text-center text-md-left job-title">{objective}</h5>
-          <ul className="d-md-flex flex-wrap text-capitalize ff-open-sans">
-            <li className="mr-md-4">
-              <GoLocation /> {remote ? "Remote" : null}
-              {locations.map((value) => (
-                <>-{value}</>
+    <div ref={currentJobRef}>
+      <div className="job-block" onClick={handleClickSetJob}>
+        <div className="inner-box">
+          <div className="content">
+            <span className="company-logo">
+              <OrganizationLogo organizations={organizations} />
+            </span>
+            <h4>
+              <a href="#"> {objective}</a>
+            </h4>
+            <ul className="job-info">
+              <li>
+                <span className="icon">
+                  <GoLocation />
+                </span>{" "}
+                {remote ? (
+                  <div className="job-description-items">Remote</div>
+                ) : null}
+                {locations.map((value, index) => (
+                  <Locations key={index} location={value} />
+                ))}
+              </li>
+              <li>
+                <span className="icon">
+                  <BiTimeFive />
+                </span>
+                <JobType type={type} />
+              </li>
+
+              <li>
+                <span className="icon">
+                  <BiMoney />
+                </span>
+                {compensation ? (
+                  <Compensation compensation={compensation.visible} />
+                ) : (
+                  " Not available"
+                )}
+              </li>
+              <li>
+                <span className="icon">
+                  <IoMdHourglass />
+                </span>
+                {created}
+              </li>
+            </ul>
+            <ul className="job-other-info">
+              {skills.map((skill, index) => (
+                <li key={index} className="green">
+                  {skill.name}
+                </li>
               ))}
-            </li>
-            <li className="mr-md-4">
-              <BiMoney />
-              {compensation_visible ? (
-                <Compensation compensation={compensation} />
-              ) : (
-                " Not available"
-              )}
-            </li>
-            <li className="mr-md-4">
-              <BiTimeFive /> <JobType type={type} />
-            </li>
-            <li className="mr-md-4 ">
-              <div className="job-skill">
-                <BiCodeAlt />
-                {skills.map((skill, index) => `${skill.name} - `)}
-              </div>
-            </li>
-            <li className="mr-md-4">
-              <IoMdHourglass /> {created}
-            </li>
-            <li className="mr-md-4 ">
-              <Button onClick={handleClickPrev}>
-                {" "}
-                <AiOutlineLike />{" "}
-              </Button>
-              <Button onClick={handleClickNext}>
-                <AiOutlineDislike />
-              </Button>
-            </li>
-          </ul>
+            </ul>
+            <Link
+              to={{ pathname: `https://torre.co/jobs/${job.id}` }}
+              className="btn btn-secondary"
+              target="_blank"
+            >
+              Quick apply
+            </Link>
+          </div>
         </div>
       </div>
-      <div className="job-right my-4 flex-shrink-0"></div>
     </div>
   );
 };

@@ -17,7 +17,7 @@ const JobTypeSelect = () => {
       onChange={handleChange}
       className="select-control"
     >
-      <option value="">Jobb type</option>
+      <option value="">Job type</option>
       <option value="full-time-employment">Full time employment</option>
       <option value="part-time-employment">Part time employment</option>
       <option value="freelance-gigs">Freelance gigs</option>

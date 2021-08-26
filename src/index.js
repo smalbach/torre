@@ -13,7 +13,7 @@ ReactDOM.render(
   <FilterState>
     <BrowserRouter>
       <Switch>
-        <Route path="/Jobs" render={(props) => <Jobs {...props} />} />
+        <Route path="/jobs" render={(props) => <Jobs {...props} />} />
 
         <Redirect from="/" to="/jobs" />
       </Switch>

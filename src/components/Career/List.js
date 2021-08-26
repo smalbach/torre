@@ -4,15 +4,13 @@ import ListDetail from "components/Career/ListDetail";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import filterContext from "context/filters/filterContext";
 
-const List = () => {
+const List = (props) => {
   const filtersContext = useContext(filterContext);
-  const { jobs_list, open_position, loadingjobs } = filtersContext;
+  const { jobs_list, open_position } = filtersContext;
 
   return (
     <>
-      {loadingjobs ? (
-        <div>Loading</div>
-      ) : (
+      {jobs_list ? (
         <div className="row">
           <div className="col-lg-12 mx-auto">
             <div className="career-search mb-60">
@@ -44,7 +42,7 @@ const List = () => {
             </nav>
           </div>
         </div>
-      )}
+      ) : null}
     </>
   );
 };

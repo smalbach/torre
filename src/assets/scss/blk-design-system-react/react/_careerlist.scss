@@ -208,3 +208,18 @@ ul {
 .mb-30 {
   margin-bottom: 30px;
 }
+
+.job-title {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.job-title h5 {
+  font-size: 20px;
+  color: $torre-clear;
+  padding-top: 5px;
+}
+
+.job-description-items {
+  padding-left: 20px;
+}

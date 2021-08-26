@@ -12,6 +12,7 @@ import {
   FILTER_LOADINGJOBS,
   FILTER_COMPANY,
   FILTER_SALARY,
+  FILTER_UNSETJOB,
 } from "types";
 
 const FilterState = (props) => {
@@ -24,10 +25,14 @@ const FilterState = (props) => {
     current_job: null,
     loadingjobs: null,
     lodingjosid: null,
+    loadingcurrentjob: true,
     keyword: "",
     company: "",
     salary: "",
     salaryText: "",
+  };
+  const headers = {
+    "Content-Type": "application/json;charset=UTF-8",
   };
 
   const [state, dispatch] = useReducer(filterReducer, initialState);
@@ -143,10 +148,6 @@ const FilterState = (props) => {
       try {
         setSearch(false);
 
-        const headers = {
-          "Content-Type": "application/json;charset=UTF-8",
-        };
-
         const response = await axios.post(SEARCH_URI, data, headers);
 
         dispatch({
@@ -162,13 +163,35 @@ const FilterState = (props) => {
     }
   };
 
-  const setPosition = (id) => {
+  const setPosition = async (id) => {
+    dispatch({
+      type: FILTER_LOADINGJOBS,
+      payload: true,
+    });
+    const SEARCH_URI = `https://torre.co/api/suite/opportunities/${id}`;
     try {
+      const response = await axios.get(SEARCH_URI, "", headers);
+
       dispatch({
         type: FILTER_SETSELECTEDJOB,
-        payload: id,
+        payload: response.data,
       });
-    } catch (error) {}
+    } catch (error) {
+      dispatch({
+        type: FILTER_LOADINGJOBS,
+        payload: null,
+      });
+    }
+    dispatch({
+      type: FILTER_LOADINGJOBS,
+      payload: null,
+    });
+  };
+
+  const unsetJob = () => {
+    dispatch({
+      type: FILTER_UNSETJOB,
+    });
   };
 
   return (
@@ -187,7 +210,8 @@ const FilterState = (props) => {
         jobtype: state.jobtype,
         salary: state.salary,
         salaryText: state.salaryText,
-
+        loadingjobsid: state.loadingjobsid,
+        loadingcurrentjob: state.loadingcurrentjob,
         setCompany,
         setLanguage,
         setLocation,
@@ -198,6 +222,7 @@ const FilterState = (props) => {
         setPeridiocity,
         setKeyword,
         setCurrencyfind,
+        unsetJob,
       }}
     >
       {props.children}

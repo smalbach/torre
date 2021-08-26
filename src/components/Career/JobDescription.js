@@ -1,16 +1,22 @@
 import React, { useContext } from "react";
-import JobDetail from "components/Career/JobDetail";
+import DetailedJob from "components/Career/DetailedJob";
 import filterContext from "context/filters/filterContext";
+import Loader from "utils/Loader";
 
 const JobDescription = () => {
   const filtersContext = useContext(filterContext);
-  const { job_descrption, current_job } = filtersContext;
-
+  const { job_descrption, current_job, loadingjobsid } = filtersContext;
+  console.log(current_job);
   return (
     <>
-      {job_descrption ? (
-        <JobDetail key={current_job[0].id} job={current_job[0]} />
-      ) : null}
+      {loadingjobsid ? (
+        <>
+          Loading...
+          <Loader />
+        </>
+      ) : (
+        <>{job_descrption ? <DetailedJob job={current_job} /> : null}</>
+      )}
     </>
   );
 };
